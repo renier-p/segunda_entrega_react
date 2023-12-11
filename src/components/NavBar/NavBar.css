@@ -1,0 +1,7 @@
+.nav-shadow {
+  box-shadow: 0.5px 0.7px 1.6px rgba(0, 0, 0, 0.057),
+    1.1px 1.7px 3.8px rgba(0, 0, 0, 0.082), 1.9px 3px 6.9px rgba(0, 0, 0, 0.101),
+    3.2px 5px 11.4px rgba(0, 0, 0, 0.119),
+    5.3px 8.2px 18.8px rgba(0, 0, 0, 0.138),
+    9.2px 14.3px 32.8px rgba(0, 0, 0, 0.163), 20px 31px 71px rgba(0, 0, 0, 0.22);
+}
