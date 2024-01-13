@@ -1,32 +1,52 @@
 import { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
-import { getProducts, getProductsByCategory } from "../../asyncMock";
 import { useParams } from "react-router-dom";
+import { db } from "../../config/firebase";
+import { getDocs, collection, query, where } from "firebase/firestore";
 
 const ItemListContainer = ({ greeting }) => {
   const [products, setProducts] = useState([]);
-  const [titulo, setTitulo] = useState("Productos");
-
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { categoryId } = useParams();
 
   useEffect(() => {
-    const asyncFunc = categoryId ? getProductsByCategory : getProducts;
+    setLoading(true);
+    setError(null);
 
-    asyncFunc(categoryId)
+    const collectionRef = categoryId
+      ? query(collection(db, "Productos"), where("Categoria", "==", categoryId))
+      : collection(db, "Productos");
+
+    getDocs(collectionRef)
       .then((response) => {
-        setProducts(response);
-        setTitulo(categoryId || "Productos");
+        const productsAdapted = response.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setProducts(productsAdapted);
       })
       .catch((error) => {
-        console.error(error);
-        setTitulo("Productos");
+        console.error("Error fetching products: ", error);
+        setError(
+          "Hubo un error al obtener la lista de productos. Por favor intentalo de nuevo"
+        );
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [categoryId]);
 
   return (
     <div className="mt-32 text-center pb-12">
       <h1>{greeting}</h1>
-      <ItemList products={products} titulo={titulo} />
+      {loading ? (
+        <p>Cargando...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : (
+        <ItemList products={products} />
+      )}
     </div>
   );
 };

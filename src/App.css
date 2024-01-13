@@ -1,0 +1,12 @@
+/* Estilo para ocultar las flechas de aumento/disminución */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Estilo para navegadores webkit como Chrome y Safari */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
