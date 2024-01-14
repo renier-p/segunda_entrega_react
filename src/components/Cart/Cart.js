@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import CartItem from "../CartItem/CartItem";
 import { CartContext } from "../Context/CartContext";
-import Checkout from "../Checkout/Checkout";
 
 const Cart = () => {
   const { cart, clearCart, totalQuantity, totalPrice } =
@@ -45,7 +44,13 @@ const Cart = () => {
         </div>
       </div>
       <div className="w-1/2 mt-10">
-        <Checkout />
+        <button
+          type="submit"
+          className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-blue-400 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 mt-4"
+        >
+          {" "}
+          <Link to="/checkout">Checkout</Link>
+        </button>
       </div>
     </div>
   );

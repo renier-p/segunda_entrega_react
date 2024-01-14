@@ -2,8 +2,9 @@ import { useState } from "react";
 
 const CheckoutForm = ({ onConfirm }) => {
   const [nombre, setNombre] = useState("");
-  const [telefono, setTelefono] = useState(0);
+  const [telefono, setTelefono] = useState();
   const [correo, setCorreo] = useState("");
+  const [confirmarCorreo, setConfirmarCorreo] = useState("");
   const [direccion, setDireccion] = useState("");
 
   const handleConfirm = (event) => {
@@ -20,9 +21,10 @@ const CheckoutForm = ({ onConfirm }) => {
   };
 
   return (
-    <div>
+    <div className="flex mt-20 justify-center">
       <form onSubmit={handleConfirm}>
-        <div className="mb-4">
+        <h1 className="mt-12">Checkout Form</h1>
+        <div className="mt-10 mx-auto">
           <input
             type="text"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-2"
@@ -32,7 +34,7 @@ const CheckoutForm = ({ onConfirm }) => {
             onChange={({ target }) => setNombre(target.value)}
           ></input>
           <input
-            type="text"
+            type="number"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-2"
             placeholder="Teléfono"
             required
@@ -46,6 +48,14 @@ const CheckoutForm = ({ onConfirm }) => {
             required
             value={correo}
             onChange={({ target }) => setCorreo(target.value)}
+          ></input>
+          <input
+            type="text"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-72 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-2"
+            placeholder="Confirmar Email"
+            required
+            value={confirmarCorreo}
+            onChange={({ target }) => setConfirmarCorreo(target.value)}
           ></input>
           <input
             type="text"

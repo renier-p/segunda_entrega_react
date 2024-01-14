@@ -24,10 +24,6 @@ function NavBar() {
           <span className="self-center text-2xl font-semibold text-black-500 whitespace-nowrap">
             store
           </span>
-
-          {/* <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            store
-          </span> */}
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <CartWidget />
